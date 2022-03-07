@@ -1,8 +1,6 @@
 import axios from 'axios';
 
 export async function checkBankDetails(bankAccountNumber, ifsc) {
-    console.log(bankAccountNumber, ifsc);
-
     const data = {
         data: {
             account_number: bankAccountNumber,

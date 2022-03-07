@@ -24,8 +24,6 @@ export function requiredParam(...params) {
     const objValues = Object.values(params[0]);
     let isParam = { value: null, index: null };
     objValues.map((param, index) => {
-        console.log(param);
-
         if (!param) {
             isParam = { value: false, index };
         }

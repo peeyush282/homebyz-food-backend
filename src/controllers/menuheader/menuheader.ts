@@ -27,10 +27,8 @@ export const findAllMenuHeader = async (req, res) => {
                 }
             }
         ]);
-        // console.log(await menuHeaders.toArray());
 
         const menuHeader = await menuHeaders.toArray();
-        console.log(menuHeader);
 
         // const menuHeader = await MenuHeader.find({ storeId }).populate('foodItems').populate('catId');
         if (menuHeader.length === 0) {
