@@ -13,9 +13,9 @@ const FoodItemSchema = new Schema(
             vegSpecific: { type: String, enum: VegSpecific, trim: true },
             sugarLevel: { type: String, enum: SugarLevel, trim: true },
             spiceLevel: { type: String, enum: SpiceLevel, trim: true },
-            other: { type: String, enum: Other }
+            other: [{ type: String, enum: Other }]
         },
-        attributePet: { type: String, enum: PetFoodAttributes },
+        attributePet: [{ type: String, enum: PetFoodAttributes }],
         weightAttribute: [
             {
                 packageWeight: { unit: { type: String, trim: true }, value: { type: String, trim: true } },

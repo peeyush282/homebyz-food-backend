@@ -1,5 +1,5 @@
 import { Schema, model } from 'mongoose';
-import { IMenuHeader } from '../interfaces/menuHeader';
+import { IMenuHeader } from '../interfaces/menuheader';
 
 const MenuHeaderSchema = new Schema(
     {

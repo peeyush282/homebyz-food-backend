@@ -8,12 +8,25 @@ import MenuHeader from '../../models/MenuHeader';
 export const createFoodItem = async (req, res) => {
     try {
         let foodItemDetails = req.body;
-        const attribute = JSON.parse(foodItemDetails.attribute);
-        const weightAttribute = JSON.parse(foodItemDetails.weightAttribute);
-        foodItemDetails = { ...foodItemDetails, attribute, weightAttribute };
-        console.log('food items', foodItemDetails);
-
+        let attribute;
+        let attributePet;
         const images = [];
+
+        const weightAttribute = JSON.parse(foodItemDetails.weightAttribute);
+        foodItemDetails = { ...foodItemDetails, weightAttribute };
+
+        if (foodItemDetails?.attribute) {
+            attribute = JSON.parse(foodItemDetails.attribute);
+            foodItemDetails = { ...foodItemDetails, attribute, weightAttribute };
+        }
+
+        if (foodItemDetails?.attributePet) {
+            attributePet = JSON.parse(foodItemDetails.attributePet);
+            foodItemDetails = { ...foodItemDetails, attributePet, weightAttribute };
+        }
+
+        // TODO
+
         // const { success, message } = requiredParam(req);
 
         // if (!success) {
@@ -52,6 +65,7 @@ export const updateFoodItem = async (req, res) => {
     try {
         let foodItemDetails = req.body;
         let attribute;
+        let attributePet;
         let weightAttribute;
 
         let images = [];
@@ -60,7 +74,10 @@ export const updateFoodItem = async (req, res) => {
             const attribute = JSON.parse(foodItemDetails.attribute);
             foodItemDetails = { ...foodItemDetails, attribute };
         }
-
+        if (foodItemDetails?.attributePet) {
+            attributePet = JSON.parse(foodItemDetails.attributePet);
+            foodItemDetails = { ...foodItemDetails, attributePet, weightAttribute };
+        }
         if (foodItemDetails?.weightAttribute) {
             const weightAttribute = JSON.parse(foodItemDetails.weightAttribute);
             foodItemDetails = { ...foodItemDetails, attribute, weightAttribute };
@@ -69,10 +86,10 @@ export const updateFoodItem = async (req, res) => {
         const { itemId } = req.params;
 
         const itemDetails = await get(itemId);
+        images = itemDetails.fooditem.images;
         if (foodItemDetails?.oldImage) {
             const oldImage = JSON.parse(foodItemDetails?.oldImage);
 
-            images = itemDetails.fooditem.images;
             oldImage.forEach((image, index) => {
                 images.forEach((img) => {
                     if (img === image) {

@@ -6,7 +6,7 @@ export interface IFoodItem extends Document {
     menuHeader: ObjectId;
     type: FoodType;
     attribute: FoodAttributes;
-    attributePet: PetFoodAttributes;
+    attributePet: PetFoodAttributes[];
     weightAttribute: WeightAttributes[];
     sellWithin: string;
     searchKeywords: string[];
@@ -38,7 +38,7 @@ export enum SugarLevel {
 }
 
 export enum SpiceLevel {
-    'Low Spicy',
+    'Spicy',
     'Medium Spicy',
     'Extra Spicy',
     'N/A'
@@ -65,7 +65,7 @@ export interface FoodAttributes {
     vegSpecific: VegSpecific;
     sugarLevel: SugarLevel;
     spiceLevel: SpiceLevel;
-    other: Other;
+    other: Other[];
 }
 
 export interface WeightAttributes {
