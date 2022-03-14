@@ -74,7 +74,8 @@ export const createMenuHeader = async (req, res) => {
     try {
         const { name, storeId, catId } = req.body;
 
-        const categories = await MenuHeader.findOne({ name });
+        const categories = await MenuHeader.findOne({ $and: [{ name }, { storeId }] });
+        console.log(categories);
 
         if (categories) {
             return res.status(400).json({ success: false, message: 'Menu Header with name exist' });
