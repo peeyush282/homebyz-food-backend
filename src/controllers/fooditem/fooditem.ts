@@ -82,6 +82,8 @@ export const updateFoodItem = async (req, res) => {
             const weightAttribute = JSON.parse(foodItemDetails.weightAttribute);
             foodItemDetails = { ...foodItemDetails, attribute, weightAttribute };
         }
+        console.log(foodItemDetails.weightAttribute);
+        console.log(foodItemDetails);
 
         const { itemId } = req.params;
 
@@ -105,13 +107,14 @@ export const updateFoodItem = async (req, res) => {
 
                 images.push(image.filename);
             }
-            foodItemDetails = { ...foodItemDetails, attribute, weightAttribute, images };
+            foodItemDetails = { ...foodItemDetails, images };
         }
 
         if (req.files.length === 0 && !req.body.oldImage) {
             const images = itemDetails.fooditem.images;
-            foodItemDetails = { ...foodItemDetails, attribute, weightAttribute, images };
+            foodItemDetails = { ...foodItemDetails, images };
         }
+        console.log(foodItemDetails);
 
         const result = await update(itemId, foodItemDetails);
 

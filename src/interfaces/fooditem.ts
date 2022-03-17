@@ -55,7 +55,7 @@ export enum Area {
 
 export enum Other {
     'Egg-Less',
-    'Contain Egg',
+    'Contains Egg',
     'Gluten Free',
     'Lactose Free',
     'N/A'
