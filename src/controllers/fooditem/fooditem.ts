@@ -36,7 +36,8 @@ export const createFoodItem = async (req, res) => {
 
         if (req.files) {
             for await (const image of req.files) {
-                await s3Upload(image, 'foodItem');
+                const s3 = await s3Upload(image, 'foodItem');
+                console.log(s3);
 
                 images.push(image.filename);
             }
@@ -68,7 +69,7 @@ export const updateFoodItem = async (req, res) => {
         let attributePet;
         let weightAttribute;
 
-        let images = [];
+        const images = [];
 
         if (foodItemDetails?.attribute) {
             const attribute = JSON.parse(foodItemDetails.attribute);
@@ -82,13 +83,11 @@ export const updateFoodItem = async (req, res) => {
             const weightAttribute = JSON.parse(foodItemDetails.weightAttribute);
             foodItemDetails = { ...foodItemDetails, attribute, weightAttribute };
         }
-        console.log(foodItemDetails.weightAttribute);
-        console.log(foodItemDetails);
 
         const { itemId } = req.params;
 
-        const itemDetails = await get(itemId);
-        images = itemDetails.fooditem.images;
+        // const itemDetails = await get(itemId);
+        // images = itemDetails.fooditem.images;
         if (foodItemDetails?.oldImage) {
             const oldImage = JSON.parse(foodItemDetails?.oldImage);
 
@@ -110,9 +109,14 @@ export const updateFoodItem = async (req, res) => {
             foodItemDetails = { ...foodItemDetails, images };
         }
 
-        if (req.files.length === 0 && !req.body.oldImage) {
-            const images = itemDetails.fooditem.images;
-            foodItemDetails = { ...foodItemDetails, images };
+        // if (req.files.length === 0 && !req.body.oldImage) {
+        //     const images = itemDetails.fooditem.images;
+        //     foodItemDetails = { ...foodItemDetails, images };
+        // }
+
+        if (req.body.visible) {
+            const visible = req.body.visible;
+            foodItemDetails = { visible };
         }
         console.log(foodItemDetails);
 

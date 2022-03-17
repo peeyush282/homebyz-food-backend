@@ -28,7 +28,8 @@ const FoodItemSchema = new Schema(
         ],
         sellWithin: { type: String, enum: Area, trim: true },
         searchKeywords: [{ type: String, trim: true }],
-        isDeleted: { type: Boolean, default: false }
+        isDeleted: { type: Boolean, default: false },
+        visible: { type: Boolean, default: true }
     },
     { timestamps: true }
 );
