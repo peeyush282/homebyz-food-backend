@@ -47,6 +47,7 @@ export enum Area {
     Five = '5',
     Ten = '10',
     Fifteen = '15',
+    Twenty = '20',
     'Twenty Five' = '25',
     City = 'city',
     State = 'state',
